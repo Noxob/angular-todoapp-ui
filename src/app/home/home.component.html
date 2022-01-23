@@ -1,5 +1,84 @@
 <mat-tab-group>
-    <mat-tab label="All Todos"> Content 1 </mat-tab>
-    <mat-tab label="Waiting Todos"> Content 2 </mat-tab>
-    <mat-tab label="Completed Todos"> Content 3 </mat-tab>
+    <mat-tab label="All Todos"> 
+        <div class="main-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let todo of todos;">
+                        <mat-card class="stat-card">
+                            <mat-card-header>
+                                <div mat-card-avatar>
+                                    <mat-icon class="statistic-icon" [ngStyle]="{'color': (todo.complete) ? 'green' : 'red'}"
+                                    [matTooltip]="todo.complete ? 'You have completed this task' : 'You have not completed this task!'">
+                                        {{todo.complete ? 'done': 'clear'}}
+                                    </mat-icon>
+                                </div>
+                                <mat-card-title>{{todo.title}}</mat-card-title>
+                                <mat-card-subtitle>{{todo.user}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content class="statistics-text">
+                                {{todo.description}}
+                            </mat-card-content>
+                            <mat-card-footer>
+                                <span class="input-group-text" id="basic-addon1"><mat-icon style="margin-right: 10px;">schedule</mat-icon> {{ todo.due | date:'dd.MM.yyyy' }}</span>
+                            </mat-card-footer>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Waiting Todos"> <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let todo of waiting;">
+                    <mat-card class="stat-card">
+                        <mat-card-header>
+                            <div mat-card-avatar>
+                                <mat-icon class="statistic-icon" [ngStyle]="{'color': (todo.complete) ? 'green' : 'red'}"
+                                [matTooltip]="todo.complete ? 'You have completed this task' : 'You have not completed this task!'">
+                                    {{todo.complete ? 'done': 'clear'}}
+                                </mat-icon>
+                            </div>
+                            <mat-card-title>{{todo.title}}</mat-card-title>
+                            <mat-card-subtitle>{{todo.user}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content class="statistics-text">
+                            {{todo.description}}
+                        </mat-card-content>
+                        <mat-card-footer>
+                            <span class="input-group-text" id="basic-addon1"><mat-icon style="margin-right: 10px;">schedule</mat-icon> {{ todo.due | date:'dd.MM.yyyy' }}</span>
+                        </mat-card-footer>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+ </mat-tab>
+    <mat-tab label="Completed Todos"> <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let todo of done;">
+                    <mat-card class="stat-card">
+                        <mat-card-header>
+                            <div mat-card-avatar>
+                                <mat-icon class="statistic-icon" [ngStyle]="{'color': (todo.complete) ? 'green' : 'red'}"
+                                [matTooltip]="todo.complete ? 'You have completed this task' : 'You have not completed this task!'">
+                                    {{todo.complete ? 'done': 'clear'}}
+                                </mat-icon>
+                            </div>
+                            <mat-card-title>{{todo.title}}</mat-card-title>
+                            <mat-card-subtitle>{{todo.user}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content class="statistics-text">
+                            {{todo.description}}
+                        </mat-card-content>
+                        <mat-card-footer>
+                            <span class="input-group-text" id="basic-addon1"><mat-icon style="margin-right: 10px;">schedule</mat-icon> {{ todo.due | date:'dd.MM.yyyy' }}</span>
+                        </mat-card-footer>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-tab>
 </mat-tab-group>
