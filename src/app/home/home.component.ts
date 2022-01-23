@@ -21,6 +21,12 @@ export class HomeComponent implements OnInit {
     this.http.get<Todo[]>(`${this.url}/todo/get/all`).subscribe(
       success=>{
         this.todos = success;
+        // for(let todo of this.todos){
+          
+        //   if(todo.complete){
+        //     this.done.push(todo);
+        //   }
+        // }
         this.todos.forEach(t => t.complete?this.done.push(t) : this.waiting.push(t));
         console.log("waiting: " + this.waiting);
         console.log("done:" + this.done);

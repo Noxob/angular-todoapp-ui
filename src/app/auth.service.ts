@@ -29,7 +29,9 @@ export class AuthService {
       if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ' && status == 200) {
           const jwt = bearerToken.slice(7, bearerToken.length);
           window.sessionStorage.setItem("token", jwt);
+          this.currentUser.next(user);
           this.loggedIn.next(true);
+          sessionStorage.setItem("username", user.username);
           this.router.navigate(['']);
           this.snackBar.open("Login Successful!", "OK", {
             duration: 2000,
@@ -75,6 +77,8 @@ export class AuthService {
 
   get getCurrentUser(){
     if(this.isLoggedIn){
+      const user:User = {username:sessionStorage.getItem("username"), password:"*****"};
+      this.currentUser.next(user);
       return this.currentUser.asObservable();
     }
   }
