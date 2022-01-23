@@ -51,7 +51,7 @@ export class AuthService {
     this.snackBar.open("Your session has expired, please log in again.", "OK", {
       duration: 2000,
     });
-    this.router.navigate(['login']);
+    // this.router.navigate(['login']);
   }
 
   getToken(): string{

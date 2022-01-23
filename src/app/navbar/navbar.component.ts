@@ -12,19 +12,14 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authService:AuthService, private router: Router) { }
   
-  loggedIn:boolean;
   user:string;
+  loggedIn:boolean;
 
   ngOnInit(): void {
     this.authService.isLoggedIn.subscribe(isLoggedIn => this.loggedIn = isLoggedIn);
     this.authService.getCurrentUser.subscribe(currentUser => this.user = currentUser.username);
     console.log(this.user);
-    if(this.loggedIn){
-      console.log("already logged int redirecting to /")
-      this.router.navigate(['']);
-    }else{
-      this.router.navigate(['login']);
-    }
+    
   }
 
   logout(){
