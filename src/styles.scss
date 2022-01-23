@@ -3,3 +3,14 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.wrapper {
+    min-height: 100vh;
+  
+    /* Equal to height of footer */
+    /* But also accounting for potential margin-bottom of last child */
+    margin-bottom: -20vh; //bunun footer yüksekliği kadar olması gerekiyor
+  }
+  .push{
+      height: 20vh;
+  }
