@@ -34,10 +34,10 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(this.loginForm.value).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
       },
       err => {
-        console.log(err);
+        // console.log(err);
         this.snackBar.open("Incorrect username or password.", "OK", {
           duration: 2000,
         });
