@@ -4,6 +4,8 @@ import { Todo } from '../entity/todo';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TodoService } from '../todo.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-savetodo',
@@ -12,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SavetodoComponent implements OnInit {
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder,private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private formBuilder: FormBuilder,private router: Router, private snackBar: MatSnackBar, private todoService:TodoService, private dialogRef: MatDialogRef<SavetodoComponent>) { }
   url:string="http://localhost:8080";
   @Input()
   todo:Todo={"id": "", "title":"", "description":"", "due":null, "created":null, "updated":null, "user":"", "complete": false};
@@ -28,7 +30,6 @@ export class SavetodoComponent implements OnInit {
       description: ['', Validators.required],
       due: ['']
     });
-    console.log(this.todo);
   }
 
   save(){
@@ -51,7 +52,7 @@ export class SavetodoComponent implements OnInit {
             this.snackBar.open("Succesfully added new task!", "OK", {
               duration: 2000,
             });
-            this.router.navigate[""];
+            this.closeDialog();
           },
           error => {
             console.log(error)
@@ -64,7 +65,10 @@ export class SavetodoComponent implements OnInit {
         case "REMOVE":
         this.http.get(`${this.url}/todo/remove/${this.todo.id}`).subscribe(
           success=>{
-            
+            this.snackBar.open("Succesfully removed the task!", "OK", {
+              duration: 2000,
+            });
+            this.closeDialog();
           },
           error=>{
             this.snackBar.open(error.error.error, "OK", {
@@ -77,7 +81,10 @@ export class SavetodoComponent implements OnInit {
           this.todo.complete=true;
           this.http.post<Todo>(`${this.url}/todo/save`, this.todo).subscribe(
             success=>{
-
+              this.snackBar.open("You have completed the task!", "OK", {
+                duration: 2000,
+              });
+              this.closeDialog();
             },
             error=>{
               this.snackBar.open(error.error.error, "OK", {
@@ -88,7 +95,12 @@ export class SavetodoComponent implements OnInit {
         break;
         
       }
-      
+      this.todoService.getTodos();
+    }
+
+    closeDialog(){
+      this.todoService.getTodos();
+      this.dialogRef.close();
     }
 
 }

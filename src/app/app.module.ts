@@ -21,10 +21,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material/core';
-// import {MatMomentDateModule} from "@angular/material-moment-adapter";
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { TodoService } from './todo.service';
 import { Interceptor } from './interceptor';
 import { SavetodoComponent } from './savetodo/savetodo.component';
 import { TododetailComponent } from './tododetail/tododetail.component';
@@ -61,7 +61,7 @@ import { TododetailComponent } from './tododetail/tododetail.component';
     MatNativeDateModule, 
     // MatMomentDateModule
   ],
-  providers: [AuthService, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}],
+  providers: [AuthService, TodoService, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},{provide: MAT_DATE_LOCALE, useValue: 'en-GB'},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -22,12 +22,12 @@
         <div *ngSwitchCase="'REMOVE'">
             <p>Do you really want to delete this task?</p>
             <button mat-raised-button (click)="save()" class="btn btn-outline-danger mr-3">Yes</button>
-            <button mat-raised-button class="btn btn-outline-secondary">No</button>
+            <button mat-raised-button (click)="closeDialog()" class="btn btn-outline-secondary">No</button>
         </div>
         <div *ngSwitchCase="'COMPLETE'">
             <p>Did you complete this task?</p>
             <button mat-raised-button (click)="save()" class="btn btn-outline-success mr-3">Yes</button>
-            <button mat-raised-button class="btn btn-outline-secondary">No</button>
+            <button mat-raised-button (click)="closeDialog()" class="btn btn-outline-secondary">No</button>
         </div>
     </div>
 </div>
