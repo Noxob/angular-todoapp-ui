@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from '../entity/todo';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -14,7 +14,12 @@ export class SavetodoComponent implements OnInit {
 
   constructor(private http: HttpClient, private formBuilder: FormBuilder,private router: Router, private snackBar: MatSnackBar) { }
   url:string="http://localhost:8080";
-  todo:Todo;
+  @Input()
+  todo:Todo={"id": "", "title":"", "description":"", "due":null, "created":null, "updated":null, "user":"", "complete": false};
+
+  @Input()
+  status:string="EDIT";
+
   todoForm:FormGroup;
 
   ngOnInit(): void {
@@ -23,23 +28,67 @@ export class SavetodoComponent implements OnInit {
       description: ['', Validators.required],
       due: ['']
     });
+    console.log(this.todo);
   }
 
   save(){
-    this.todo = this.todoForm.value;
-    this.http.post<Todo>(`${this.url}/todo/save`, this.todo).subscribe(
-      success => {
-        this.snackBar.open("Succesfully added new task!", "OK", {
-          duration: 2000,
-        });
-        this.router.navigate[""];
-      },
-      error => {
-        this.snackBar.open(error, "OK", {
-          duration: 2000,
-        });
+    switch(this.status){
+      case "EDIT":
+
+        if(this.todoForm.invalid){
+          this.snackBar.open("You need to fill required fields!", "OK", {
+            duration: 2000,
+          });
+          return;
+        }
+
+        this.todo.title = this.todoForm.value.title;
+        this.todo.description = this.todoForm.value.description;
+        this.todo.due = this.todoForm.value.due;
+        
+        this.http.post<Todo>(`${this.url}/todo/save`, this.todo).subscribe(
+          success => {
+            this.snackBar.open("Succesfully added new task!", "OK", {
+              duration: 2000,
+            });
+            this.router.navigate[""];
+          },
+          error => {
+            console.log(error)
+            this.snackBar.open(error.error.error, "OK", {
+              duration: 2000,
+            });
+          }
+        );
+        break;
+        case "REMOVE":
+        this.http.get(`${this.url}/todo/remove/${this.todo.id}`).subscribe(
+          success=>{
+            
+          },
+          error=>{
+            this.snackBar.open(error.error.error, "OK", {
+              duration: 2000,
+            });
+          }
+        )
+        break;
+        case "COMPLETE":
+          this.todo.complete=true;
+          this.http.post<Todo>(`${this.url}/todo/save`, this.todo).subscribe(
+            success=>{
+
+            },
+            error=>{
+              this.snackBar.open(error.error.error, "OK", {
+                duration: 2000,
+              });
+            }
+          );
+        break;
+        
       }
-    );
-  }
+      
+    }
 
 }

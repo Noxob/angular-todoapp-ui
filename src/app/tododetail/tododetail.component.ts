@@ -8,6 +8,8 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
+import { SavetodoComponent } from '../savetodo/savetodo.component';
 
 @Component({
   selector: 'app-tododetail',
@@ -15,12 +17,12 @@ import {
     trigger('openClose', [
       // ...
       state('open', style({
-        height: '40px',
+        // height: '40px',
         opacity: 1,
         //display: "block"
       })),
       state('closed', style({
-        height: '25px',
+        // height: '25px', 
         opacity: 0,
         //display: "none"
       })),
@@ -41,13 +43,20 @@ export class TododetailComponent implements OnInit {
   todo: Todo;
   showButtons:boolean=false;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   toggle(){
     this.showButtons=!this.showButtons;
+  }
+
+  openDialog(type:string){
+    let dialogRef = this.dialog.open(SavetodoComponent, {
+    });
+    dialogRef.componentInstance.status= type;
+    dialogRef.componentInstance.todo=this.todo;
   }
 
 }

@@ -14,11 +14,11 @@
     </mat-card-content>
     <!-- [ngStyle]="{'display': (showButtons) ? 'block' : 'none', 'opacity': (showButtons) ? '1' : '0'}" -->
     <mat-card-actions [@openClose]="showButtons ? 'open' : 'closed'" >
-        <button mat-button color="confirm"><mat-icon>check</mat-icon>Complete!</button>
-        <button mat-button><mat-icon>edit</mat-icon>Edit</button>
-        <button mat-button><mat-icon>delete</mat-icon>Remove</button>
+        <button mat-button (click)="openDialog('COMPLETE')"><mat-icon>check</mat-icon>Complete!</button>
+        <button mat-button (click)="openDialog('EDIT')"><mat-icon>edit</mat-icon>Edit</button>
+        <button mat-button (click)="openDialog('REMOVE')"><mat-icon>delete</mat-icon>Remove</button>
     </mat-card-actions>
     <mat-card-footer>
-        <span class="input-group-text" id="basic-addon1"><mat-icon style="margin-right: 10px;">schedule</mat-icon> {{ todo.due | date:'dd.MM.yyyy' }}</span>
+        <span *ngIf="todo.due != null" class="input-group-text" id="basic-addon1"><mat-icon style="margin-right: 10px;">schedule</mat-icon> {{ todo.due | date:'dd.MM.yyyy' }}</span>
     </mat-card-footer>
 </mat-card>
