@@ -48,7 +48,7 @@ export class AuthService {
     localStorage.clear();
     sessionStorage.clear();
     this.loggedIn.next(false);
-    this.snackBar.open("Your session has expired, please log in again.", "OK", {
+    this.snackBar.open("You have been logged out, please log in again.", "OK", {
       duration: 2000,
     });
     // this.router.navigate(['login']);
