@@ -19,10 +19,12 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Interceptor } from './interceptor';
+import { SavetodoComponent } from './savetodo/savetodo.component';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { Interceptor } from './interceptor';
     LoginComponent,
     SignupComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    SavetodoComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { Interceptor } from './interceptor';
     MatCardModule,
     MatButtonModule,
     HttpClientModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule
   ],
   providers: [AuthService, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},],
   bootstrap: [AppComponent]
