@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { SavetodoComponent } from '../savetodo/savetodo.component';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
 
-  constructor(private authService:AuthService, private router: Router) { }
+  constructor(private authService:AuthService, private router: Router, public dialog: MatDialog) { }
   
   user:string;
   loggedIn:boolean;
@@ -24,6 +26,10 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     this.authService.logout();
+  }
+
+  openSaveTodo(){
+    const dialogRef = this.dialog.open(SavetodoComponent);
   }
 
 }
