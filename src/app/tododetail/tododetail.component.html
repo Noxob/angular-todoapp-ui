@@ -1,4 +1,4 @@
-<mat-card class="stat-card mt-3">
+<mat-card class="stat-card mt-3" (mouseenter)="toggle()" (mouseleave)="toggle()">
     <mat-card-header>
         <div mat-card-avatar>
             <mat-icon class="statistic-icon" [ngStyle]="{'color': (todo.complete) ? 'green' : 'red'}"
@@ -12,7 +12,8 @@
     <mat-card-content class="statistics-text">
         {{todo.description}}
     </mat-card-content>
-    <mat-card-actions>
+    <!-- [ngStyle]="{'display': (showButtons) ? 'block' : 'none', 'opacity': (showButtons) ? '1' : '0'}" -->
+    <mat-card-actions [@openClose]="showButtons ? 'open' : 'closed'" >
         <button mat-button color="confirm"><mat-icon>check</mat-icon>Complete!</button>
         <button mat-button><mat-icon>edit</mat-icon>Edit</button>
         <button mat-button><mat-icon>delete</mat-icon>Remove</button>
