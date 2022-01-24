@@ -27,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Interceptor } from './interceptor';
 import { SavetodoComponent } from './savetodo/savetodo.component';
+import { TododetailComponent } from './tododetail/tododetail.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { SavetodoComponent } from './savetodo/savetodo.component';
     SignupComponent,
     NavbarComponent,
     FooterComponent,
-    SavetodoComponent
+    SavetodoComponent,
+    TododetailComponent
   ],
   imports: [
     BrowserModule,
