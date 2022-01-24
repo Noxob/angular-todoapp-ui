@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   
-  constructor(private authService:AuthService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(private authService:AuthService, private formBuilder: FormBuilder, private router: Router, private snackBar: MatSnackBar) { }
 
   loginForm:FormGroup;
   isSubmitted=false;
@@ -37,6 +38,9 @@ export class LoginComponent implements OnInit {
       },
       err => {
         console.log(err);
+        this.snackBar.open("Incorrect username or password.", "OK", {
+          duration: 2000,
+        });
       }
     );
   }
