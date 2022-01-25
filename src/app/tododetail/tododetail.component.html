@@ -14,7 +14,7 @@
     </mat-card-content>
     <!-- [ngStyle]="{'display': (showButtons) ? 'block' : 'none', 'opacity': (showButtons) ? '1' : '0'}" -->
     <mat-card-actions [@openClose]="showButtons ? 'open' : 'closed'" >
-        <button mat-button (click)="openDialog('COMPLETE')"><mat-icon>check</mat-icon>Complete!</button>
+        <button *ngIf="!todo.complete" mat-button (click)="openDialog('COMPLETE')"><mat-icon>check</mat-icon>Complete!</button>
         <button mat-button (click)="openDialog('EDIT')"><mat-icon>edit</mat-icon>Edit</button>
         <button mat-button (click)="openDialog('REMOVE')"><mat-icon>delete</mat-icon>Remove</button>
     </mat-card-actions>
