@@ -59,6 +59,7 @@ export class SavetodoComponent implements OnInit {
             this.snackBar.open(error.error.error, "OK", {
               duration: 2000,
             });
+            this.closeDialog();
           }
         );
         break;
@@ -99,7 +100,7 @@ export class SavetodoComponent implements OnInit {
     }
 
     closeDialog(){
-      this.todoService.getTodos();
+      setTimeout(() => this.todoService.getTodos(), 500);
       this.dialogRef.close();
     }
 

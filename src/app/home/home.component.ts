@@ -25,6 +25,8 @@ export class HomeComponent implements OnInit {
     this.authService.isLoggedIn.subscribe(isLoggedIn => this.loggedIn = isLoggedIn);
     this.todoService.getObservableTodos.subscribe(todosUpdated=> {
       this.todos = todosUpdated
+      this.done = [];
+      this.waiting = [];
       todosUpdated.forEach(t => t.complete?this.done.push(t) : this.waiting.push(t));
     });
     this.todoService.getTodos();
