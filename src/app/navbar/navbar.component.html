@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="">Todo App</a>
-      <ul  class="d-flex justify-content-end" style="list-style: none;color: black;text-decoration: none;">
+      <ul *ngIf="loggedIn" class="d-flex justify-content-end" style="list-style: none;color: black;text-decoration: none;">
         <button mat-fab (click)="openSaveTodo()" color="primary" matTooltip="Click here to add a task!">
           <mat-icon>add_circle</mat-icon>
         </button>
