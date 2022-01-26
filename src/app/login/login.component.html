@@ -10,7 +10,7 @@
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i [class]="hide ? 'fa fa-lock' : 'fas fa-unlock'"></i></span>
                 <input [type]="hide ? 'password' : 'text'" formControlName="password" name="password" (keydown.enter)="$event.preventDefault()" (keyup.enter)="login()" class="form-control" placeholder="Password">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <button mat-icon-button matSuffix (click)="$event.preventDefault();hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </div>
