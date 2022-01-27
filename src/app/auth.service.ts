@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { User } from './entity/user';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Constants } from './constants';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,8 @@ export class AuthService {
   
   constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
 
-  url:string = "http://localhost:8080";
-
   public login(user:User):Observable<any>{
-    return this.http.post(`${this.url}/login`, user, {observe:'response'}).pipe(
+    return this.http.post(`${Constants.API_ENDPOINT}/login`, user, {observe:'response'}).pipe(
       map(authenticateSuccess.bind(this))
     );
 
@@ -51,7 +50,7 @@ export class AuthService {
     this.snackBar.open("You have been logged out, please log in again.", "OK", {
       duration: 2000,
     });
-    // this.router.navigate(['login']);
+    this.router.navigate(['login']);
   }
 
   getToken(): string{

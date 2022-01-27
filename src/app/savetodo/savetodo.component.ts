@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TodoService } from '../todo.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Constants } from '../constants';
 
 @Component({
   selector: 'app-savetodo',
@@ -15,7 +16,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class SavetodoComponent implements OnInit {
 
   constructor(private http: HttpClient, private formBuilder: FormBuilder,private router: Router, private snackBar: MatSnackBar, private todoService:TodoService, private dialogRef: MatDialogRef<SavetodoComponent>) { }
-  url:string="http://localhost:8080";
   @Input()
   todo:Todo={"id": "", "title":"", "description":"", "due":null, "created":null, "updated":null, "user":"", "complete": false};
 
@@ -47,7 +47,7 @@ export class SavetodoComponent implements OnInit {
         this.todo.description = this.todoForm.value.description;
         this.todo.due = this.todoForm.value.due;
         
-        this.http.post<Todo>(`${this.url}/todo/save`, this.todo).subscribe(
+        this.http.post<Todo>(`${Constants.API_ENDPOINT}/todo/save`, this.todo).subscribe(
           success => {
             this.snackBar.open("Succesfully added new task!", "OK", {
               duration: 2000,
@@ -64,7 +64,7 @@ export class SavetodoComponent implements OnInit {
         );
         break;
         case "REMOVE":
-        this.http.get(`${this.url}/todo/remove/${this.todo.id}`).subscribe(
+        this.http.get(`${Constants.API_ENDPOINT}/todo/remove/${this.todo.id}`).subscribe(
           success=>{
             this.snackBar.open("Succesfully removed the task!", "OK", {
               duration: 2000,
@@ -80,7 +80,7 @@ export class SavetodoComponent implements OnInit {
         break;
         case "COMPLETE":
           this.todo.complete=true;
-          this.http.post<Todo>(`${this.url}/todo/save`, this.todo).subscribe(
+          this.http.post<Todo>(`${Constants.API_ENDPOINT}/todo/save`, this.todo).subscribe(
             success=>{
               this.snackBar.open("You have completed the task!", "OK", {
                 duration: 2000,

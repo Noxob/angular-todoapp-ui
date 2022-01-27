@@ -4,6 +4,7 @@ import { AuthService } from '../auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Constants } from '../constants';
 
 @Component({
   selector: 'app-signup',
@@ -33,7 +34,7 @@ export class SignupComponent implements OnInit {
     // if(this.signupForm.invalid){
     //   return;
     // }
-    this.http.post(`http://localhost:8080/user/register`, this.signupForm.value).subscribe(
+    this.http.post(`${Constants.API_ENDPOINT}/user/register`, this.signupForm.value).subscribe(
       success=>{
         console.log(success);
         this.snackBar.open("You have successfully signed up, now you can log in.", "OK", {

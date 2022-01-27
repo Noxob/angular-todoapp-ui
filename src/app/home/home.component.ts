@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private http: HttpClient, private authService:AuthService, private router: Router, private todoService:TodoService) { }
 
-  url:string = "http://localhost:8080";
   todos:Todo[];
   waiting:Todo[]=[];
   done:Todo[]=[];
