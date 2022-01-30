@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject, ReplaySubject } from 'rxjs';
 import { Todo } from './entity/todo';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from './constants';
@@ -8,10 +8,12 @@ import { Constants } from './constants';
     providedIn: 'root'
   })
   export class TodoService {
-
+    
+    arr : Todo[] = [];
+    private todos: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>(this.arr);
+    
     constructor(private http: HttpClient) { }
   
-    private todos: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
 
     get getObservableTodos(){
           return this.todos.asObservable();
@@ -20,7 +22,13 @@ import { Constants } from './constants';
     public getTodos(){
       this.http.get<Todo[]>(`${Constants.API_ENDPOINT}/todo/get/all`).subscribe(
         success=>{
-          this.todos.next(success);
+          if(success!==null){
+            this.todos.next(success);
+            console.log("next is callse");
+            console.log(success);
+          }else{
+            this.todos.next([]);
+          }
         },
         error=>{
           console.log(error);
