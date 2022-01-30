@@ -1,5 +1,5 @@
 <div class="container d-flex " >
-    <div class="card mt-1 mb-1" style="padding:20px;" [ngSwitch]="status">
+    <div [ngSwitch]="status">
         <form *ngSwitchCase="'EDIT'" [formGroup]="todoForm" (ngSubmit)="save()">
         <div class="d-flex flex-column">
             <div class="input-group mb-3">
