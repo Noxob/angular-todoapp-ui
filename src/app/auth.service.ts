@@ -69,7 +69,6 @@ export class AuthService {
       this.loggedIn.next(true);
     }else{
       this.loggedIn.next(false);
-      this.logout()
     }
     return this.loggedIn.asObservable();
   }
