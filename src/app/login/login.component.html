@@ -5,18 +5,19 @@
         <div class="d-flex flex-column">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
-                <input formControlName="username" name="username" class="form-control" placeholder="Username">
+                <input formControlName="username" name="username" class="form-control" placeholder="Username" tabindex="1">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1"><i [class]="hide ? 'fa fa-lock' : 'fas fa-unlock'"></i></span>
-                <input [type]="hide ? 'password' : 'text'" formControlName="password" name="password" (keydown.enter)="$event.preventDefault()" (keyup.enter)="login()" class="form-control" placeholder="Password">
-                <button mat-icon-button matSuffix (click)="$event.preventDefault();hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <input [type]="hide ? 'password' : 'text'" formControlName="password" name="password" (keydown.enter)="$event.preventDefault()" (keyup.enter)="login()" 
+                class="form-control" placeholder="Password" tabindex="2">
+                <button mat-icon-button matSuffix (click)="$event.preventDefault();hide = !hide" tabindex="4" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </div>
-            <button mat-raised-button style="display:block; width:100%;" type="submit" class="btn btn-outline-primary">Login</button>
+            <button mat-raised-button style="display:block; width:100%;" tabindex="3" type="submit" class="btn btn-outline-primary">Login</button>
         </div>
         </form>
-        <a href="signup">Don't you have an account? Click here to sign up.</a>
+        <a tabindex="5" href="signup">Don't you have an account? Click here to sign up.</a>
     </div>
 </div>
