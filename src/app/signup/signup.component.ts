@@ -57,7 +57,9 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['login']);
       },
       error=>{
-        console.log(error);
+        this.snackBar.open(error.error.error, "OK", {
+          duration: 4000,
+        });
       }
     )
   }
