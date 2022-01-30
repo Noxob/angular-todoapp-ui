@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -23,17 +23,31 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.signupForm  =  this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
-  });
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    }, { validators: this.checkPasswords });
   }
 
+  checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
+    let pass = group.get('password').value;
+    let confirmPass = group.get('confirmPassword').value
+    let valid = null;
+    if(pass !== confirmPass){
+      valid = { notSame: true };
+    }
+    group.get('password').setErrors(valid);
+    group.get('confirmPassword').setErrors(valid);
+    return valid;
+  }
 
   signup(){
-    // console.log(this.signupForm.value);
     this.isSubmitted = true;
-    // if(this.signupForm.invalid){
-    //   return;
-    // }
+    if(this.signupForm.invalid){
+      this.snackBar.open("Please check the form fields and try submitting the form again.", "OK", {
+        duration: 4000,
+      });
+      return;
+    }
     this.http.post(`${Constants.API_ENDPOINT}/user/register`, this.signupForm.value).subscribe(
       success=>{
         console.log(success);
