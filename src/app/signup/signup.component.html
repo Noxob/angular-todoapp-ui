@@ -4,18 +4,21 @@
         <div class="d-flex flex-column">
             <div class="input-group mb-3">
                 <span class="input-group-text"><i class="fa fa-user"></i></span>
-                <input formControlName="username" name="username" class="form-control" placeholder="Username">
+                <input formControlName="username" name="username" class="form-control" placeholder="Username*">
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text"><i [class]="hide ? 'fa fa-lock' : 'fas fa-unlock'"></i></span>
-                <input [type]="hide ? 'password' : 'text'" [ngClass]="{'input-error': signupForm.controls['password'].invalid }" formControlName="password" name="password" (keydown.enter)="$event.preventDefault()" class="form-control" placeholder="Password">
+                <input [type]="hide ? 'password' : 'text'" [ngClass]="{'input-error': signupForm.controls['password'].invalid }" 
+                formControlName="password" name="password" (keydown.enter)="$event.preventDefault()" class="form-control" placeholder="Password*">
                 <button mat-icon-button matSuffix (click)="$event.preventDefault();hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fas fa-redo"></i></span>
-                <input [type]="hide ? 'password' : 'text'" [ngClass]="{'input-error': signupForm.controls['password'].invalid }" formControlName="confirmPassword" name="confirmPassword" (keydown.enter)="$event.preventDefault()" (keyup.enter)="signup()" class="form-control" placeholder="Type Password Again">
+                <span class="input-group-text"><i [class]="hide ? 'fas fa-check-circle' : 'far fa-check-circle'"></i></span>  
+                <input [type]="hide ? 'password' : 'text'" [ngClass]="{'input-error': signupForm.controls['password'].invalid }" 
+                formControlName="confirmPassword" name="confirmPassword" (keydown.enter)="$event.preventDefault()" (keyup.enter)="signup()" 
+                class="form-control" placeholder="Confirm Password*">
                 <button mat-icon-button matSuffix (click)="$event.preventDefault();hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
