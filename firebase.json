@@ -3,7 +3,7 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "public": "dist/couchbase-demo-todoapp-ui",
+    "public": "dist/angular-todoapp-ui",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -26,5 +26,5 @@ jobs:
       run: |
         npm install
         ng build --prod --aot
-        cp ./dist/couchbase-demo-todoapp-ui/ ./public/
+        cp ./dist/angular-todoapp-ui/ ./public/
         firebase deployy

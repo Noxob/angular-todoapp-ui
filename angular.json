@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "couchbase-demo-todoapp-ui": {
+    "angular-todoapp-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/couchbase-demo-todoapp-ui",
+            "outputPath": "dist/angular-todoapp-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "couchbase-demo-todoapp-ui:build"
+            "browserTarget": "angular-todoapp-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "couchbase-demo-todoapp-ui:build:production"
+              "browserTarget": "angular-todoapp-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "couchbase-demo-todoapp-ui:build"
+            "browserTarget": "angular-todoapp-ui:build"
           }
         },
         "test": {
@@ -115,16 +115,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "couchbase-demo-todoapp-ui:serve"
+            "devServerTarget": "angular-todoapp-ui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "couchbase-demo-todoapp-ui:serve:production"
+              "devServerTarget": "angular-todoapp-ui:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "couchbase-demo-todoapp-ui"
+  "defaultProject": "angular-todoapp-ui"
 }
