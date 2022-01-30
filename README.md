@@ -1,5 +1,7 @@
 # Angular To-Do App
 
+Deployed project can be found [here](https://todo-app-noxob.web.app/).
+
 Project uses heroku deployed backend ready to use.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
