@@ -31,7 +31,6 @@ export class AuthService {
           this.currentUser.next(user);
           this.loggedIn.next(true);
           sessionStorage.setItem("username", user.username);
-          this.router.navigate(['']);
           this.snackBar.open("Login Successful!", "OK", {
             duration: 2000,
           });
@@ -50,7 +49,6 @@ export class AuthService {
     this.snackBar.open("You have been logged out, please log in again.", "OK", {
       duration: 2000,
     });
-    this.router.navigate(['login']);
   }
 
   getToken(): string{

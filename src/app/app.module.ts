@@ -28,6 +28,7 @@ import { TodoService } from './todo.service';
 import { Interceptor } from './interceptor';
 import { SavetodoComponent } from './savetodo/savetodo.component';
 import { TododetailComponent } from './tododetail/tododetail.component';
+import { LoggedInGuard } from './loggedin.guard';
 
 
 @NgModule({
@@ -61,7 +62,7 @@ import { TododetailComponent } from './tododetail/tododetail.component';
     MatNativeDateModule, 
     // MatMomentDateModule
   ],
-  providers: [AuthService, TodoService, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},{provide: MAT_DATE_LOCALE, useValue: 'en-GB'},],
+  providers: [AuthService, TodoService, LoggedInGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},{provide: MAT_DATE_LOCALE, useValue: 'en-GB'},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
