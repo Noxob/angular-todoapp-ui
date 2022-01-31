@@ -24,14 +24,11 @@ import { Constants } from './constants';
         success=>{
           if(success!==null){
             this.todos.next(success);
-            console.log("next is callse");
-            console.log(success);
           }else{
             this.todos.next([]);
           }
         },
         error=>{
-          console.log(error);
         }
       )
     }
