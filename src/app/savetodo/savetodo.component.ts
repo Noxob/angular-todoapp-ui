@@ -55,11 +55,10 @@ export class SavetodoComponent implements OnInit {
             this.closeDialog();
           },
           error => {
-            console.log(error)
+            this.dialogRef.close();
             this.snackBar.open(error.error.error, "OK", {
               duration: 2000,
             });
-            this.closeDialog();
           }
         );
         break;
@@ -72,6 +71,7 @@ export class SavetodoComponent implements OnInit {
             this.closeDialog();
           },
           error=>{
+            console.log("kayıt erorusu")
             this.snackBar.open(error.error.error, "OK", {
               duration: 2000,
             });
@@ -88,6 +88,7 @@ export class SavetodoComponent implements OnInit {
               this.closeDialog();
             },
             error=>{
+              console.log("kayıt erorusu")
               this.snackBar.open(error.error.error, "OK", {
                 duration: 2000,
               });

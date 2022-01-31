@@ -28,7 +28,6 @@ export class Interceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             map((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
-                    console.log('event--->>>', event);
                     const bearerToken = event.headers.get('Authorization');
                     if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ' && event.status != 403) {
                         const jwt = bearerToken.slice(7, bearerToken.length);
@@ -36,20 +35,19 @@ export class Interceptor implements HttpInterceptor {
                     }else{
                         this.authService.logout();
                     }
-                    // this.errorDialogService.openDialog(event);
                 }
                 return event;
             }),
             catchError((error: HttpErrorResponse) => {
                 let data = {};
+                if(error.status == 403){
+                    this.authService.logout();
+                    return throwError(error);
+                }
                 data = {
                     reason: error && error.error.reason ? error.error.reason : '',
                     status: error.status
                 };
-                console.log(data);
-                if(error.status == 403){
-                    this.authService.logout();
-                }
                 return throwError(error);
             })
         
