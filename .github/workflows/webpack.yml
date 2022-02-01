@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [14.x]
     
     steps:
     - uses: actions/checkout@v2
@@ -28,3 +28,9 @@ jobs:
       run: npm run build:ci
     - name: Test
       run: npm run test:ci
+    - name: Firebase Deploy
+      uses: FirebaseExtended/action-hosting-deploy@v0
+      with:
+        repoToken: '${{ secrets.GITHUB_TOKEN }}'
+        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TODO_APP_NOXOB }}'
+        projectId: todo-app-noxob
