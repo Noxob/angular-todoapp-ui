@@ -26,11 +26,13 @@ jobs:
       run: npm ci
     - name: Build
       run: npm run build:ci
-    - name: Test
-      run: npm run test:ci
-    - name: Firebase Deploy
+    # - name: Test
+    #   run: npm run test:ci
+    - name: Firebase init
       uses: FirebaseExtended/action-hosting-deploy@v0
       with:
         repoToken: '${{ secrets.GITHUB_TOKEN }}'
         firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TODO_APP_NOXOB }}'
         projectId: todo-app-noxob
+    - name: Firebase deploy
+      run: firebase deploy
