@@ -46,6 +46,7 @@ export class AuthService {
     localStorage.clear();
     sessionStorage.clear();
     this.loggedIn.next(false);
+    this.router.navigate(["/login"]);
     this.snackBar.open("You have been logged out, please log in again.", "OK", {
       duration: 2000,
     });
