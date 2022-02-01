@@ -17,7 +17,9 @@ jobs:
         node-version: '10.x'
     - run: npm install
     - run: npm run build:ci
-    - uses: FirebaseExtended/action-hosting-deploy@v0
+    - uses: w9jds/firebase-action@master
       with:
-        firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TODO_APP_NOXOB }}
+        args: deploy --only hosting
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         PROJECT_ID: todo-app-noxob
