@@ -17,7 +17,7 @@ jobs:
         node-version: '10.x'
     - run: npm install
     - run: npm run build:ci
-    uses: FirebaseExtended/action-hosting-deploy@v0
+    - uses: FirebaseExtended/action-hosting-deploy@v0
       with:
         firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TODO_APP_NOXOB }}
         PROJECT_ID: todo-app-noxob
