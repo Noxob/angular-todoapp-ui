@@ -1,5 +1,6 @@
 <div class="wrapper" [ngStyle]="{'pointer-events': loading ? 'none': ''}">
   <app-navbar></app-navbar>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
   <div class="spacer"></div>
   <router-outlet></router-outlet>
   <div class="push"></div>
