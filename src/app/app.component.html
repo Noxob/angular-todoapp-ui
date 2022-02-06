@@ -1,7 +1,12 @@
-<div class="wrapper">
+<div class="wrapper" [ngStyle]="{'pointer-events': loading ? 'none': ''}">
   <app-navbar></app-navbar>
   <div class="spacer"></div>
   <router-outlet></router-outlet>
   <div class="push"></div>
   <app-footer></app-footer>
+</div>
+<div *ngIf="loading" class="overlay">
+  <div class="center">
+    <mat-spinner style="margin:0 auto;"></mat-spinner>
+  </div>
 </div>

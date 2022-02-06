@@ -10,13 +10,15 @@ import {Observable, throwError} from "rxjs";
 import {Injectable} from "@angular/core";
 import { map, catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { UiService } from './ui.service';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
 
-    constructor(private authService:AuthService){}
+    constructor(private authService:AuthService, private ui:UiService){}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        this.ui.spin(true);
         let token = window.sessionStorage.getItem('token');
         if(token){
             request = request.clone({
@@ -35,6 +37,7 @@ export class Interceptor implements HttpInterceptor {
                     }else{
                         this.authService.logout();
                     }
+                    this.ui.spin(false);
                 }
                 return event;
             }),
@@ -42,6 +45,7 @@ export class Interceptor implements HttpInterceptor {
                 let data = {};
                 if(error.status == 403){
                     this.authService.logout();
+                    this.ui.spin(false);
                     return throwError(error);
                 }
                 data = {

@@ -19,6 +19,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material/core';
 
@@ -60,7 +61,7 @@ import { LoggedInGuard } from './loggedin.guard';
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule, 
-    // MatMomentDateModule
+    MatProgressSpinnerModule,
   ],
   providers: [AuthService, TodoService, LoggedInGuard, {provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true},{provide: MAT_DATE_LOCALE, useValue: 'en-GB'},],
   bootstrap: [AppComponent]
